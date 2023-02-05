@@ -12,11 +12,6 @@ class Index extends Component
 
 	public $data;
 
-	// public function mount()
-	// {
-	// 	$this->proses();
-	// }
-
 	public function render()
 	{
 		$alternatifs = $this->proses();
@@ -39,7 +34,7 @@ class Index extends Component
 		// penentuan nilai bobot
 		$bobots = [];
 		foreach ($kriterias as $kr) {
-			$bobots[] = round($kr->bobot / $kriterias->sum('bobot'), 2);
+			$bobots[] = $kr->bobot / $kriterias->sum('bobot');
 		}
 
 		// penentuan matriks keputusan
@@ -57,19 +52,19 @@ class Index extends Component
 			foreach ($mat as $km => $m) {
 				$vec[] = pow($m, $bobots[$km]);
 			}
-			$vectors[] = round(array_product($vec), 3);
+			$vectors[] = array_product($vec);
 		}
 
 		// penentuan nilai bobot preferensi
 		$prefs = [];
 		$sigma_si = array_sum($vectors);
 		foreach ($vectors as $vector) {
-			$prefs[] = round($vector / $sigma_si, 3);
+			$prefs[] = $vector / $sigma_si;
 		}
 
 		// masukkan hasil penilaian ke data alternatif
 		foreach ($alternatifs as $key => $alternatif) {
-			$alternatif->nilai = $prefs[$key];
+			$alternatif->nilai = round($prefs[$key], 4);
 		}
 
 		return $alternatifs;
