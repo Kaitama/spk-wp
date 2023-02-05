@@ -50,7 +50,7 @@ php artisan migrate
 php artisan serve
 ```
 
-13. Ketik alamat url (umumnya [http://127.0.0.1:8000/register](http://127.0.0.1:8000/register)) pada web browser **Google Chrome** untuk melihat melakukan registrasi akun admin.
+13. Ketik alamat url ([http://127.0.0.1:8000/register](http://127.0.0.1:8000/register)) pada web browser **Google Chrome** untuk melihat melakukan registrasi akun admin.
 
 ## Author
 
